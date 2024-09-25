@@ -4,7 +4,7 @@ from pathlib import Path
 app = FastAPI()
 
 # Ruta a tu archivo .txt (ajusta la ruta según tu sistema)
-file_path = Path(__file__).parent / "moneda.txt"
+file_path = Path(__file__).parent / "Moneda.txt"
 
 @app.get("/read")
 def read_text_file():
