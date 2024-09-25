@@ -11,6 +11,6 @@ def read_text_file():
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-        return {"content": content}
+        return {"Valor": content}
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Archivo no encontrado")
