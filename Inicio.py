@@ -3,6 +3,7 @@ from pathlib import Path
 import aiofiles
 
 app = FastAPI()
+app.title="MonedaVe"
 
 # Ruta a tu archivo .txt (ajusta la ruta según tu sistema)
 file_path = Path(__file__).parent / "Moneda.txt"
