@@ -9,10 +9,10 @@ app.title="MonedaVe"
 file_path = Path(__file__).parent / "Moneda.txt"
 
 @app.get("/read")
-def read_text_file():
+async def read_text_file():
     try:
-        with open(file_path, 'r') as f:
-            content = f.read()
+        async with aiofiles.open(file_path, 'r') as f:
+            content = await f.read()
         return {"Valor": content}
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Archivo no encontrado")
@@ -26,3 +26,4 @@ async def write_to_file(value: str):
         return {"message": "Valor escrito exitosamente."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al escribir: {str(e)}")
+    
