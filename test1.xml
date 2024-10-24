@@ -1,0 +1,99 @@
+<ECF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<Encabezado>
+		<Version>1.0</Version>
+		<IdDoc>
+			<TipoeCF>31</TipoeCF>
+			<eNCF>E310000000454</eNCF>
+			<FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
+			<IndicadorMontoGravado>1</IndicadorMontoGravado>
+			<TipoIngresos>01</TipoIngresos>
+			<TipoPago>1</TipoPago>
+		</IdDoc>
+		<Emisor>
+			<RNCEmisor>130960054</RNCEmisor>
+			<RazonSocialEmisor>THE FACTORY HKA DOMINICANA DEMO</RazonSocialEmisor>
+			<NombreComercial>THE FACTORY HKA DOMINICANA DEMO</NombreComercial>
+			<Sucursal>0005</Sucursal>
+			<DireccionEmisor>88163 SPORER CRESTEAST SYLVIA, AR 04378-8191</DireccionEmisor>
+			<Municipio>040201</Municipio>
+			<Provincia>040000</Provincia>
+			<TablaTelefonoEmisor>
+				<TelefonoEmisor>123-456-7890</TelefonoEmisor>
+			</TablaTelefonoEmisor>
+			<CorreoEmisor>rsalazar@thefactoryhka.com</CorreoEmisor>
+			<WebSite>www.thefactoryhka.com/rd</WebSite>
+			<ActividadEconomica>Facturación Electronicaa</ActividadEconomica>
+			<RutaVenta>string</RutaVenta>
+			<InformacionAdicionalEmisor>PRUEBAS TEST EMISION</InformacionAdicionalEmisor>
+			<FechaEmision>08-10-2024</FechaEmision>
+		</Emisor>
+		<Comprador>
+			<RNCComprador>101019433</RNCComprador>
+			<RazonSocialComprador>GRUPO COMETA SAS</RazonSocialComprador>
+			<ContactoComprador>{"Nombre":"Yudelkys","Telefono":"809-530-1014"}</ContactoComprador>
+			<CorreoComprador>contabilidad@grupocometa.com</CorreoComprador>
+			<DireccionComprador>AV. ISABEL AGUIAR 164, SANTO DOMINGO</DireccionComprador>
+			<MunicipioComprador>120101</MunicipioComprador>
+			<ProvinciaComprador>320000</ProvinciaComprador>
+		</Comprador>
+		<Totales>
+			<MontoGravadoTotal>0.00</MontoGravadoTotal>
+			<MontoExento>280.00</MontoExento>
+			<TotalITBIS>0.00</TotalITBIS>
+			<MontoImpuestoAdicional>5.60</MontoImpuestoAdicional>
+			<ImpuestosAdicionales>
+				<ImpuestoAdicional>
+					<TipoImpuesto>002</TipoImpuesto>
+					<TasaImpuestoAdicional>2</TasaImpuestoAdicional>
+					<OtrosImpuestosAdicionales>5.60</OtrosImpuestosAdicionales>
+				</ImpuestoAdicional>
+			</ImpuestosAdicionales>
+			<MontoTotal>285.60</MontoTotal>
+			<ValorPagar>285.60</ValorPagar>
+		</Totales>
+	</Encabezado>
+	<DetallesItems>
+		<Item>
+			<NumeroLinea>1</NumeroLinea>
+			<TablaCodigosItem>
+				<CodigosItem>
+					<TipoCodigo>Interna</TipoCodigo>
+					<CodigoItem>0002027629087</CodigoItem>
+				</CodigosItem>
+			</TablaCodigosItem>
+			<IndicadorFacturacion>4</IndicadorFacturacion>
+			<NombreItem>NOMBRE SERVICIO</NombreItem>
+			<IndicadorBienoServicio>2</IndicadorBienoServicio>
+			<DescripcionItem>NOMBRE SERVICIO</DescripcionItem>
+			<CantidadItem>1.00</CantidadItem>
+			<UnidadMedida>43</UnidadMedida>
+			<PrecioUnitarioItem>280.00</PrecioUnitarioItem>
+			<TablaImpuestoAdicional>
+				<ImpuestoAdicional>
+					<TipoImpuesto>002</TipoImpuesto>
+				</ImpuestoAdicional>
+			</TablaImpuestoAdicional>
+			<MontoItem>280.00</MontoItem>
+		</Item>
+	</DetallesItems>
+	<FechaHoraFirma>08-10-2024 20:17:34</FechaHoraFirma>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+			<SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+			<Reference URI="">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+				<DigestValue>O+PgS8dziq5yjEuDB2XaJRb22c5KPZYcDWvI9WNUkb8=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>bDymtI1jaMeU6/mlWJPsqTqGgKYuQ0zeU8N34/FhXF1NWOwA9fwy0INPMYAgrBoUC57xNSqwsaUbI/+I7joXsGF+MNOxv/P6v+0ylOj/wb9t4zEmojxh3gzevDbS3Fdwy/Ny9sJDBgEHE6SOu68OASTKntUS8L5xFwEkSd+JIfUFw9myZqN8s36pOUjBuWBQ5bxYyihcvl2Q07O2elWo/jB9ctfrj1nNHkzjQjpanNttY5xkH2nLrBiYKhYPxJa2bl+K4b5L2S14IYAQ8LHXTG0+3vbSgFbl0vBbqyR9cPzwkdy9wdadQhF9gZiQKs8CRIBIwiQY+3MseZC2SYTIaQ==</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509Certificate>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</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+</ECF>

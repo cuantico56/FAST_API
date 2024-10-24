@@ -1,15 +1,24 @@
 
-from fastapi import Depends, FastAPI, HTTPException, Security, staticfiles
+from fastapi import Depends, FastAPI, HTTPException, Security, staticfiles, File, UploadFile
 from typing import Annotated
 from pathlib import Path
 import aiofiles
 import re
+import shutil
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import uvicorn
 
 app = FastAPI()
+# Allow all origins (for development purposes)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to specific origins in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.title="MonedaVe"
 app.mount("/static", staticfiles.StaticFiles(directory="static"), name="static")
 # Securely store username and password (environment variables recommended)
@@ -62,10 +71,27 @@ async def write_to_file(value: str,authenticated: bool = Depends(verify_credenti
         return {"message": "Valor escrito exitosamente."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al escribir: {str(e)}")
+    
+    
+@app.post("/Files", tags=["Endpoints"])
+async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = File(...)):
+    try:
+        # Guardar el archivo XML
+        with open("test1.xml", "wb") as xml_file:
+            shutil.copyfileobj(valorxml.file, xml_file)
+
+        # Guardar el archivo XSL
+        with open("test1.xsl", "wb") as xsl_file:
+            shutil.copyfileobj(valorxsl.file, xsl_file)
+
+        return {"status": "success", "message": "Archivos guardados con éxito."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al guardar los archivos: {str(e)}")
+
 
 
 
  #Para hacer debugging   
-#if __name__=='__main__':
-#  uvicorn.run(app,host='192.168.1.2')
+if __name__=='__main__':
+  uvicorn.run(app,host='0.0.0.0',port=8078)
     

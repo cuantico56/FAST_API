@@ -19,10 +19,57 @@
             <li>2872698762.89</li>
             <li>0.887</li>
         </ul>
-        <p><strong>Importante:</strong>  Utiliza únicamente el punto.</p>
+        <p><strong>Importante:</strong> Utiliza únicamente el punto.</p>
+
+        <!-- Formulario para cargar archivos -->
+        <h2>Cargar Archivos</h2>
+        <form id="uploadForm" class="form-container">
+            <div class="form-group">
+                <label for="xmlFile">Archivo XML:</label>
+                <input type="file" id="xmlFile" name="xmlFile" accept=".xml">
+            </div>
+            <div class="form-group">
+                <label for="xslFile">Archivo XSL:</label>
+                <input type="file" id="xslFile" name="xslFile" accept=".xsl">
+            </div>
+            <button type="submit" class="btn">Enviar Archivos</button>
+        </form>
     </main>
     <footer>
-        &copy; 2024 SirCastle
+        © 2024 SirCastle
     </footer>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            const xmlFile = document.getElementById('xmlFile').files[0];
+            const xslFile = document.getElementById('xslFile').files[0];
+    
+            if (!xmlFile || !xslFile) {
+                alert('Por favor, selecciona ambos archivos antes de enviar.');
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append('valorxml', xmlFile);
+            formData.append('valorxsl', xslFile);
+    
+            fetch('http://localhost:8078/Files', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Archivos enviados con éxito.');
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Aqui hay error.');
+            });
+        });
+    </script>
+    
 </body>
 </html>
