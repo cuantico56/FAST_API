@@ -9,10 +9,35 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import xml.etree.ElementTree as ET
+import csv
 import time
+
 import uvicorn
 
 app = FastAPI()
+# Inicializar el diccionario
+Municipios = {}
+Provincias={}
+# Abrir el archivo CSV para cargar datso de municipios y provincias
+with open('Municipios.csv', mode='r',encoding="utf-8") as file1:
+    # Leer el archivo CSV
+    reader1 = csv.reader(file1)
+    # Iterar sobre las filas del archivo
+    for row in reader1:
+        # Asignar la columna 'codigo' como clave y 'nombre' como valor
+        codigo, nombre = row
+        Municipios[codigo] = nombre
+
+with open('Provincias.csv', mode='r',encoding="utf-8") as file2:
+    # Leer el archivo CSV
+    reader2 = csv.reader(file2)
+    # Iterar sobre las filas del archivo
+    for row in reader2:
+        # Asignar la columna 'codigo' como clave y 'nombre' como valor
+        codigo, nombre = row
+        Provincias[codigo] = nombre       
+        
+        
 # Allow all origins (for development purposes)
 app.add_middleware(
     CORSMiddleware,
@@ -89,6 +114,10 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
         RNCComprador=root.find('.//RNCComprador').text
         MontoTotal=root.find('.//MontoTotal').text
         FechaHoraFirma=root.find('.//FechaHoraFirma').text
+        Muni= root.find('.//Municipio').text
+        provi= root.find('.//Provincia').text 
+        Municipio= Municipios[Muni]
+        Provincia =Provincias[provi]
         start_time = time.time()
         siggg=root.find('.//{*}SignatureValue').text[:6]
         end_time = time.time()
@@ -122,5 +151,5 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
 
  #Para hacer debugging   
 if __name__=='__main__':
-  uvicorn.run(app,host='192.168.1.3',port=8078)
+  uvicorn.run(app,host='192.168.1.2',port=8078)
     
