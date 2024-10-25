@@ -8,6 +8,7 @@ import shutil
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
+import xml.etree.ElementTree as ET
 import uvicorn
 
 app = FastAPI()
@@ -76,7 +77,28 @@ async def write_to_file(value: str,authenticated: bool = Depends(verify_credenti
 @app.post("/Files", tags=["Endpoints"])
 async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = File(...)):
     try:
-        # Guardar el archivo XML
+        newxml= await valorxml.read ()
+        # Guardar el archivo XMl
+        # Parsear el XML desde la cadena
+        # Definir el espacio de nombres
+        root = ET.fromstring(newxml)
+
+        eNCF=root.find('.//eNCF').text
+        RNCEmisor=root.find('.//RNCEmisor').text
+        RNCComprador=root.find('.//RNCComprador').text
+        MontoTotal=root.find('.//MontoTotal').text
+        FechaHoraFirma=root.find('.//FechaHoraFirma').text
+        
+        signature = None
+        for elem in root.iter():
+            if elem.tag == '{http://www.w3.org/2000/09/xmldsig#}SignatureValue':
+                signature = elem.text[:6]
+                break
+        
+        print(signature)
+
+        
+        
         with open("test1.xml", "wb") as xml_file:
             shutil.copyfileobj(valorxml.file, xml_file)
 
@@ -93,5 +115,5 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
 
  #Para hacer debugging   
 if __name__=='__main__':
-  uvicorn.run(app,host='0.0.0.0',port=8078)
+  uvicorn.run(app,host='192.168.1.3',port=8078)
     

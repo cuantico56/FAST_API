@@ -55,7 +55,7 @@
             formData.append('valorxml', xmlFile);
             formData.append('valorxsl', xslFile);
     
-            fetch('http://localhost:8078/Files', {
+            fetch('http://192.168.1.3:8078/Files', {
                 method: 'POST',
                 body: formData
             })
