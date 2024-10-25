@@ -9,6 +9,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 import xml.etree.ElementTree as ET
+import time
 import uvicorn
 
 app = FastAPI()
@@ -88,13 +89,19 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
         RNCComprador=root.find('.//RNCComprador').text
         MontoTotal=root.find('.//MontoTotal').text
         FechaHoraFirma=root.find('.//FechaHoraFirma').text
+        start_time = time.time()
         siggg=root.find('.//{*}SignatureValue').text[:6]
+        end_time = time.time()
+        print(f"Primera rutina: {end_time - start_time} segundos")
         signature = None
+        
+        start_time = time.time()
         for elem in root.iter():
             if elem.tag == '{http://www.w3.org/2000/09/xmldsig#}SignatureValue':
                 signature = elem.text[:6]
                 break
-        
+        end_time = time.time()
+        print(f"Segunda rutina: {end_time - start_time} segundos")
         print(signature)
 
         
