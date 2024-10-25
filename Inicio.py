@@ -88,7 +88,7 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
         RNCComprador=root.find('.//RNCComprador').text
         MontoTotal=root.find('.//MontoTotal').text
         FechaHoraFirma=root.find('.//FechaHoraFirma').text
-        
+        siggg=root.find('.//{*}SignatureValue').text[:6]
         signature = None
         for elem in root.iter():
             if elem.tag == '{http://www.w3.org/2000/09/xmldsig#}SignatureValue':
