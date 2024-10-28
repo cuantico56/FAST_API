@@ -150,6 +150,6 @@ async def write_Files(valorxml: UploadFile = File(...), valorxsl: UploadFile = F
 
 
  #Para hacer debugging   
-if __name__=='__main__':
-  uvicorn.run(app,host='192.168.1.2',port=8078)
+#if __name__=='__main__':
+ # uvicorn.run(app,host='192.168.1.2',port=8078)
     
